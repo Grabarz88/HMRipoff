@@ -19,5 +19,14 @@ Rigidbody2D rb;
             dirX = Input.GetAxisRaw("Horizontal");
             dirY = Input.GetAxisRaw("Vertical");
             rb.velocity = moveSpeed * new Vector2(dirX, dirY).normalized;
+            
+            Vector2 moveDirection = rb.velocity;
+            if (moveDirection != Vector2.zero)
+                {
+                float angle = Mathf.Atan2(moveDirection.y, moveDirection.x) * Mathf.Rad2Deg;
+                angle = angle - 90;
+                transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+                }
+            
             }
 }
