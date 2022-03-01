@@ -6,6 +6,8 @@ public class CameraMovement : MonoBehaviour
 {
     public Transform target;
     Vector3 offset = new Vector3(0f,0f,-10);
+    Vector2 mousePosition; 
+
 
     void Start()
     {
@@ -15,7 +17,10 @@ public class CameraMovement : MonoBehaviour
 
     void Update() {
     {
-        transform.position = target.position + offset;
+        mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector3 tilt = new Vector3(mousePosition.x - transform.position.x, mousePosition.y - transform.position.y, 0f);
+        tilt = tilt/3;
+        transform.position = target.position + offset + tilt;
     }
     }
 
