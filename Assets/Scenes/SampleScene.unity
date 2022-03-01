@@ -619,5 +619,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ec7184167ea006459474fd7d566ae85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  torso_animator: {fileID: 0}
-  nexthand: 0
+  torso_animator: {fileID: 1542162271}
+  nextHand: 0
+  punchcooldown: 0
