@@ -9,7 +9,7 @@ public class PlayerLegsMovement : MonoBehaviour
  
  Rigidbody2D rb;    
  float dirX, dirY;
- float moveSpeed = 40f;
+ float moveSpeed = 200f;
  
  void Start()
             {

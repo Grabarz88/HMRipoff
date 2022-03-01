@@ -9,7 +9,7 @@ Rigidbody2D rb;
 public Animator torso_animator;
 Vector2 mousePosition;    
  float dirX, dirY;
- float moveSpeed = 40f;
+ float moveSpeed = 200f;
  
  void Start()
             {
@@ -25,7 +25,7 @@ Vector2 mousePosition;
             torso_animator.SetFloat("Speed", Mathf.Abs(rb.velocity.x) + Mathf.Abs(rb.velocity.y));
 
             mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            float angle = Mathf.Atan2(mousePosition.y, mousePosition.x) * Mathf.Rad2Deg;
+            float angle = Mathf.Atan2(mousePosition.y - transform.position.y, mousePosition.x - transform.position.x) * Mathf.Rad2Deg;
             angle = angle - 90;
             transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
                 
