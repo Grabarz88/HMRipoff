@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 34541426619246896}
   - component: {fileID: 1267296580780354664}
   - component: {fileID: 95082831686881456}
-  - component: {fileID: 5370625836597396071}
+  - component: {fileID: 7175084838804548371}
   m_Layer: 0
   m_Name: Bush
   m_TagString: Untagged
@@ -72,7 +72,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 287285633
   m_SortingLayer: 1
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: bfae1c7c27f5e424eba456d8aaeae29e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -146,8 +146,8 @@ EdgeCollider2D:
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
   m_UseAdjacentEndPoint: 0
---- !u!61 &5370625836597396071
-BoxCollider2D:
+--- !u!70 &7175084838804548371
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -159,16 +159,6 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -1.5654259, y: -1.2070246}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 98, y: 98}
-    newSize: {x: 98, y: 98}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 77.64953, y: 55.351547}
-  m_EdgeRadius: 0
+  m_Offset: {x: -3.231125, y: -0.36912313}
+  m_Size: {x: 68.56087, y: 42.43468}
+  m_Direction: 1
