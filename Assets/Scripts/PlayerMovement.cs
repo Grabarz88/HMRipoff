@@ -8,15 +8,15 @@ public class PlayerMovement : MonoBehaviour
 Rigidbody2D rb;
 public Animator torso_animator;
 Vector2 mousePosition;    
- float dirX, dirY;
- float moveSpeed = 200f;
+float dirX, dirY;
+float moveSpeed = 200f;
  
- void Start()
+void Start()
             {
             rb = GetComponent<Rigidbody2D>();
             }
             
- void Update() 
+void Update() 
             {  
             dirX = Input.GetAxisRaw("Horizontal");
             dirY = Input.GetAxisRaw("Vertical");
@@ -29,6 +29,13 @@ Vector2 mousePosition;
             angle = angle - 90;
             transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
                 
+            
+            }
+
+public Vector2 getMirroredMovement()
+            {
+            Vector2 movementVector = (rb.velocity) * (-1);
+            return movementVector;
             
             }
 }
