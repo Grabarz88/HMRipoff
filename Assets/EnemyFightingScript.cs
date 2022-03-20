@@ -16,8 +16,8 @@ public class EnemyFightingScript : MonoBehaviour
       rb = GetComponent<Rigidbody2D>();
     }
     
-    void Update()
-    {
+    void Update()       
+    { 
      if (EnemyTargetStart == true){
        StartCoroutine(ExecuteAfterTime(2));
        
