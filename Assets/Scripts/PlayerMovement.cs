@@ -7,30 +7,75 @@ public class PlayerMovement : MonoBehaviour
 {
 Rigidbody2D rb;
 public Animator torso_animator;
-Vector2 mousePosition;    
+Vector2 mousePosition;  
+Vector2 moveDir;  
+float timer = 0.0f;
 float dirX, dirY;
 float moveSpeed = 200f;
+float dodgeSpeed = 600f;
+
+private enum State {
+    Normal,
+    Dodging,
+}
+private State state;
  
 void Start()
             {
             rb = GetComponent<Rigidbody2D>();
+            state = State.Normal;
             }
             
 void Update() 
             {  
             dirX = Input.GetAxisRaw("Horizontal");
             dirY = Input.GetAxisRaw("Vertical");
-            rb.velocity = moveSpeed * new Vector2(dirX, dirY).normalized;
+            
+            // if((Input.GetButtonDown("Jump")) && (timer <= 10.0f)) {Dodge();}
+            if(Input.GetButtonDown("Jump"))
+            {
+                state = State.Dodging;
+            }
+            
+            switch (state)
+            {
+                case State.Normal:
+                rb.velocity = moveSpeed * new Vector2(dirX, dirY).normalized;
+                torso_animator.SetFloat("Speed", Mathf.Abs(rb.velocity.x) + Mathf.Abs(rb.velocity.y));
+                mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                float angle = Mathf.Atan2(mousePosition.y - transform.position.y, mousePosition.x - transform.position.x) * Mathf.Rad2Deg;
+                angle = angle - 90;
+                transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+                break;
 
-            torso_animator.SetFloat("Speed", Mathf.Abs(rb.velocity.x) + Mathf.Abs(rb.velocity.y));
-
-            mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            float angle = Mathf.Atan2(mousePosition.y - transform.position.y, mousePosition.x - transform.position.x) * Mathf.Rad2Deg;
-            angle = angle - 90;
-            transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-                
+                case State.Dodging:
+                if (timer == 0)
+                {
+                    torso_animator.SetBool("DodgeNow", true);
+                    moveDir = new Vector2(dirX, dirY).normalized;
+                }
+                rb.velocity = dodgeSpeed * moveDir;
+                timer = timer + Time.deltaTime;
+                if (timer >= 0.5f) 
+                {
+                    timer = 0;
+                    torso_animator.SetBool("DodgeNow", false); 
+                    state = State.Normal;}
+                break;
             
             }
+            }
+
+// private void Dodge()
+//             {
+//                 Debug.Log("Unik");
+//                 rb.velocity = 600f * new Vector2(dirX, dirY).normalized;
+//                 timer = timer + Time.deltaTime;
+
+//                 if(timer >= 11.0f) {timer = 0.0f;}
+//             }
+
+
 
 public Vector2 getMirroredMovement()
             {
