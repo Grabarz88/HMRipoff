@@ -31,7 +31,7 @@ void Update()
             dirX = Input.GetAxisRaw("Horizontal");
             dirY = Input.GetAxisRaw("Vertical");
             
-            // if((Input.GetButtonDown("Jump")) && (timer <= 10.0f)) {Dodge();}
+            
             if(Input.GetButtonDown("Jump"))
             {
                 state = State.Dodging;
@@ -54,26 +54,21 @@ void Update()
                     torso_animator.SetBool("DodgeNow", true);
                     moveDir = new Vector2(dirX, dirY).normalized;
                 }
+                // transform.rotation = Quaternion.Euler(moveDir.x, moveDir.y, 0);
                 rb.velocity = dodgeSpeed * moveDir;
                 timer = timer + Time.deltaTime;
                 if (timer >= 0.5f) 
                 {
+                     Debug.Log(timer); 
                     timer = 0;
-                    torso_animator.SetBool("DodgeNow", false); 
+                    torso_animator.SetBool("DodgeNow", false);
                     state = State.Normal;}
                 break;
             
             }
             }
 
-// private void Dodge()
-//             {
-//                 Debug.Log("Unik");
-//                 rb.velocity = 600f * new Vector2(dirX, dirY).normalized;
-//                 timer = timer + Time.deltaTime;
 
-//                 if(timer >= 11.0f) {timer = 0.0f;}
-//             }
 
 
 
