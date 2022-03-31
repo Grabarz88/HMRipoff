@@ -2644,7 +2644,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1081974348
 Transform:
   m_ObjectHideFlags: 0
@@ -3991,6 +3991,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   torso_animator: {fileID: 1542162271}
+  legs_animator: {fileID: 1081974351}
 --- !u!95 &1542162271
 Animator:
   serializedVersion: 3

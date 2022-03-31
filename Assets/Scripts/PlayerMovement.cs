@@ -7,6 +7,7 @@ public class PlayerMovement : MonoBehaviour
 {
 Rigidbody2D rb;
 public Animator torso_animator;
+public Animator legs_animator;
 Vector2 mousePosition;  
 Vector2 moveDir;  
 float timer = 0.0f;
@@ -52,6 +53,7 @@ void Update()
                 if (timer == 0)
                 {
                     torso_animator.SetBool("DodgeNow", true);
+                    legs_animator.SetBool("DodgeNow", true);
                     moveDir = new Vector2(dirX, dirY).normalized;
                 }
                 // transform.rotation = Quaternion.Euler(moveDir.x, moveDir.y, 0);
@@ -62,6 +64,7 @@ void Update()
                      Debug.Log(timer); 
                     timer = 0;
                     torso_animator.SetBool("DodgeNow", false);
+                    legs_animator.SetBool("DodgeNow", false);
                     state = State.Normal;}
                 break;
             
