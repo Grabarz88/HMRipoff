@@ -13,6 +13,7 @@ float timer = 0.0f;
 float dirX, dirY;
 float moveSpeed = 200f;
 float dodgeSpeed = 600f;
+bool collided = false;
 
 private enum State {
     Normal,
@@ -54,12 +55,20 @@ void Update()
                     torso_animator.SetBool("DodgeNow", true);
                     moveDir = new Vector2(dirX, dirY).normalized;
                 }
-                // transform.rotation = Quaternion.Euler(moveDir.x, moveDir.y, 0);
+                
+                if (collided == false){
                 rb.velocity = dodgeSpeed * moveDir;
                 timer = timer + Time.deltaTime;
+                }
+                else
+                {
+                rb.velocity = Vector2.zero;
+                }
+
+
                 if (timer >= 0.5f) 
                 {
-                     Debug.Log(timer); 
+                    Debug.Log(timer); 
                     timer = 0;
                     torso_animator.SetBool("DodgeNow", false);
                     state = State.Normal;}
@@ -69,7 +78,27 @@ void Update()
             }
 
 
+void OnCollisionEnter2D(Collision2D other)
+    {
+    switch (state)
+    {
+    case State.Dodging:
+    Debug.Log("kolizja");
 
+    if ((timer >= 0.0f) && (timer > 0.5f)) 
+        {
+           collided = true;
+        }    
+
+
+
+    // rb.isKinematic = false;
+    // rb.velocity = Vector2.zero;
+    // rb.angularVelocity = 0; 
+    // rb.isKinematic = true;
+    break;
+    }
+    }
 
 
 public Vector2 getMirroredMovement()
