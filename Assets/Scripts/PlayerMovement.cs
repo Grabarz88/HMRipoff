@@ -59,9 +59,13 @@ void Update()
                 // transform.rotation = Quaternion.Euler(moveDir.x, moveDir.y, 0);
                 rb.velocity = dodgeSpeed * moveDir;
                 timer = timer + Time.deltaTime;
+
+                angle = Mathf.Atan2(moveDir.y, moveDir.x) * Mathf.Rad2Deg;
+                angle = angle - 90;
+                transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+
                 if (timer >= 0.5f) 
                 {
-                     Debug.Log(timer); 
                     timer = 0;
                     torso_animator.SetBool("DodgeNow", false);
                     legs_animator.SetBool("DodgeNow", false);
