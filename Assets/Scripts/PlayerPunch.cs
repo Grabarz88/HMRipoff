@@ -8,6 +8,10 @@ public class PlayerPunch : MonoBehaviour
     public bool nextHand;
     // public bool punchNow; 
     public bool punchcooldown = false;
+    Rigidbody2D rb;
+    [SerializeField] GameObject punchMakingObject;
+    Vector2 mousePosition;
+    Vector2 punchSpot;
  
     void Update()
     {
@@ -22,9 +26,14 @@ public class PlayerPunch : MonoBehaviour
             if (nextHand == true) {nextHand = false;}
             else if (nextHand == false) {nextHand = true;}
             torso_animator.SetBool("NextHand", nextHand);
-            torso_animator.SetBool("PunchNow", true);
+            torso_animator.SetBool("PunchNow", true); //punchNow is used to activate animation of punching. But maybe it would be more optimal to use punchcooldown instead?
             StartCoroutine (punchingAnimation());
-            //punchNow is used to activate animation of punching. But maybe it would be more optimal to use punchcooldown instead?
+            mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Vector3 punchDir = new Vector3(mousePosition.x - transform.position.x, mousePosition.y - transform.position.y, 0f);
+            punchDir = punchDir.normalized;
+            punchSpot = transform.position + punchDir*24;
+            Instantiate(punchMakingObject, punchSpot, Quaternion.identity);
+            
         }
     }
 

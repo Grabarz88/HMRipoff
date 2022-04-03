@@ -5,12 +5,16 @@ using UnityEngine;
 public class EnemyFightingScript : MonoBehaviour
 {
     public bool EnemyTargetStart = false;
+    public bool IsAlive = true;
     public GameObject target; //target is player in this case
     public Vector2 targetDir; //This Vector is pointing at the player
     public Vector2 targetMovementDir; //The enemy will try to mirror player's movement. This Vector will be taken straight from player's object;
     public float velocityInTargetDir;
+    public Animator detective_animator;
+    public Animator detective_legs_animator;
     
     Rigidbody2D rb;
+    
     
     void Start() {
       rb = GetComponent<Rigidbody2D>();
@@ -23,7 +27,7 @@ public class EnemyFightingScript : MonoBehaviour
        
      }   
 
-     if (target)
+     if ((target) && (IsAlive))
      {
         float angle = Mathf.Atan2(target.transform.position.y - transform.position.y, target.transform.position.x - transform.position.x) * Mathf.Rad2Deg;
         angle = angle - 90;
@@ -38,20 +42,14 @@ public class EnemyFightingScript : MonoBehaviour
 
         velocityInTargetDir = Vector2.Dot(targetMovementDir, targetDir); 
         
-        // if(velocityInTargetDir<0f)
-        // {
-        // rb.velocity = (targetDir * 100) + (targetMovementDir/2) - (targetDir * velocityInTargetDir);
-        // Debug.Log("Daleko");
-        // }
-        // else if(velocityInTargetDir>=0f)
-        // {
-        // rb.velocity = (targetDir * 100) + (targetMovementDir/2);
-        // Debug.Log("Blisko");
-        // }
-
-        rb.velocity = (targetDir * 100) + ((targetMovementDir-(targetDir * velocityInTargetDir))/2);
         
+        rb.velocity = (targetDir * 100) + ((targetMovementDir-(targetDir * velocityInTargetDir))/2);
+      }
 
+      else if (IsAlive == false) {
+        {
+          gameObject.GetComponent<BoxCollider2D>().enabled = false;
+        }      
        
         
      }  
@@ -60,6 +58,18 @@ public class EnemyFightingScript : MonoBehaviour
     public void TargettingStarted()
     {
       EnemyTargetStart = true;  
+    }
+
+    public void GetPunched()
+    {
+      Debug.Log("Ouch");
+      IsAlive = false;
+      rb.velocity = Vector2.zero;
+      rb.bodyType = RigidbodyType2D.Static;
+      transform.position = new Vector2(transform.position.x + (-60)*targetDir.x, transform.position.y + (-60)*targetDir.y);
+      detective_animator.SetBool("Punched", true);
+      detective_legs_animator.SetBool("Punched", true);
+      
     }
 
   IEnumerator ExecuteAfterTime(float time)
