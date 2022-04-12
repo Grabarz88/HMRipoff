@@ -10,16 +10,14 @@ public Animator detective_animator;
 
 
     
-    void Update()
-    {
-        
-    }
+ 
 
     private void OnTriggerEnter2D(Collider2D other) 
     {   
     if(other.gameObject.CompareTag("Player")){  
     detective_animator.SetBool("Punching", true);
-    StartCoroutine (punchingAnimation());    
+    StartCoroutine (punchingAnimation()); 
+    gameObject.GetComponent<EnemyFightingScript>().Punch();
 
     }
 

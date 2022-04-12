@@ -6,6 +6,7 @@ public class EnemyFightingScript : MonoBehaviour
 {
     public bool EnemyTargetStart = false;
     public bool IsAlive = true;
+    [SerializeField] GameObject punchMakingObject;
     public GameObject target; //target is player in this case
     public Vector2 targetDir; //This Vector is pointing at the player
     public Vector2 targetMovementDir; //The enemy will try to mirror player's movement. This Vector will be taken straight from player's object;
@@ -23,7 +24,7 @@ public class EnemyFightingScript : MonoBehaviour
     void Update()       
     { 
      if (EnemyTargetStart == true){
-       StartCoroutine(ExecuteAfterTime(2));
+       StartCoroutine(FindTaget());
        
      }   
 
@@ -62,7 +63,6 @@ public class EnemyFightingScript : MonoBehaviour
 
     public void GetPunched()
     {
-      Debug.Log("Ouch");
       IsAlive = false;
       rb.velocity = Vector2.zero;
       rb.bodyType = RigidbodyType2D.Static;
@@ -72,11 +72,21 @@ public class EnemyFightingScript : MonoBehaviour
       
     }
 
-  IEnumerator ExecuteAfterTime(float time)
+    public void Punch()
+    {
+      StartCoroutine(PunchCoroutine());
+    }
+
+  IEnumerator FindTaget()
  {
-     yield return new WaitForSeconds(time);
+     yield return new WaitForSeconds(2);
      target = GameObject.FindGameObjectWithTag("Player");
  }
 
+  IEnumerator PunchCoroutine()
+ {
+     yield return new WaitForSeconds(0.07f);
+     Instantiate(punchMakingObject, gameObject.transform.position, Quaternion.identity);
+ }
 
 }

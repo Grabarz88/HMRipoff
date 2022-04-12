@@ -4389,9 +4389,9 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -12.271423, y: -9.444992}
+  m_Offset: {x: -12.765259, y: -9.444992}
   serializedVersion: 2
-  m_Radius: 164.34381
+  m_Radius: 99.645874
 --- !u!4 &1709002373 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8235714676828255279, guid: 589e3a5d380a08a498eef57b5fb09447, type: 3}
@@ -5314,6 +5314,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EnemyTargetStart: 0
   IsAlive: 1
+  punchMakingObject: {fileID: 0}
   target: {fileID: 0}
   targetDir: {x: 0, y: 0}
   targetMovementDir: {x: 0, y: 0}
