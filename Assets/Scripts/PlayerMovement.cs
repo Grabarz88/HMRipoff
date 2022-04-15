@@ -18,6 +18,7 @@ float dodgeSpeed = 600f;
 private enum State {
     Normal,
     Dodging,
+    Killed,
 }
 private State state;
  
@@ -71,6 +72,11 @@ void Update()
                     legs_animator.SetBool("DodgeNow", false);
                     state = State.Normal;}
                 break;
+
+                case State.Killed:
+                rb.velocity = Vector2.zero;
+                rb.bodyType = RigidbodyType2D.Static;
+                break;
             
             }
             }
@@ -84,5 +90,15 @@ public Vector2 getMirroredMovement()
             Vector2 movementVector = (rb.velocity) * (-1);
             return movementVector;
             
+            }
+
+
+
+public void OnTriggerEnter2D(Collider2D other)
+            {
+            if(other.gameObject.GetComponent<DealDamageToPlayer>())
+            {
+                state = State.Killed;
+            }
             }
 }

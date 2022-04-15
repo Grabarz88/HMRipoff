@@ -74,6 +74,7 @@ public class EnemyFightingScript : MonoBehaviour
 
     public void Punch()
     {
+      Debug.Log("Take this");
       StartCoroutine(PunchCoroutine());
     }
 
