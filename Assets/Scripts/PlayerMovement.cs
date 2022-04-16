@@ -96,7 +96,7 @@ public Vector2 getMirroredMovement()
 
 public void OnTriggerEnter2D(Collider2D other)
             {
-            if(other.gameObject.GetComponent<DealDamageToPlayer>())
+            if((other.gameObject.GetComponent<DealDamageToPlayer>()) && (state != State.Dodging))
             {
                 state = State.Killed;
             }

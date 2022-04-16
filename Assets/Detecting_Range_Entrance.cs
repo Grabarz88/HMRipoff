@@ -17,7 +17,7 @@ public Animator detective_animator;
     if(other.gameObject.CompareTag("Player")){  
     detective_animator.SetBool("Punching", true);
     StartCoroutine (punchingAnimation()); 
-    gameObject.GetComponent<EnemyFightingScript>().Punch();
+    if(gameObject.GetComponent<EnemyFightingScript>()) {gameObject.GetComponent<EnemyFightingScript>().Punch();}
 
     }
 
