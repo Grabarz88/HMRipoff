@@ -34,7 +34,7 @@ void Update()
             dirY = Input.GetAxisRaw("Vertical");
             
             
-            if(Input.GetButtonDown("Jump"))
+            if((Input.GetButtonDown("Jump")) && (state != State.Killed))
             {
                 state = State.Dodging;
             }
@@ -76,6 +76,9 @@ void Update()
                 case State.Killed:
                 rb.velocity = Vector2.zero;
                 rb.bodyType = RigidbodyType2D.Static;
+                gameObject.GetComponent<SpriteRenderer>().sortingOrder = 1;
+                torso_animator.SetBool("Punched", true);
+                legs_animator.SetBool("Punched", true);
                 break;
             
             }
