@@ -8,6 +8,7 @@ public class EnemyFightingScript : MonoBehaviour
     public bool IsAlive = true;
     [SerializeField] GameObject punchMakingObject;
     public GameObject target; //target is player in this case
+    public GameObject trophy;
     public Vector2 targetDir; //This Vector is pointing at the player
     public Vector2 targetMovementDir; //The enemy will try to mirror player's movement. This Vector will be taken straight from player's object;
     public float velocityInTargetDir;
@@ -50,6 +51,7 @@ public class EnemyFightingScript : MonoBehaviour
       else if (IsAlive == false) {
         {
           gameObject.GetComponent<BoxCollider2D>().enabled = false;
+          StartCoroutine(DeathCoroutine());
         }      
        
         
@@ -74,8 +76,7 @@ public class EnemyFightingScript : MonoBehaviour
 
     public void Punch()
     {
-      Debug.Log("Take this");
-      StartCoroutine(PunchCoroutine());
+      if(IsAlive == true){StartCoroutine(PunchCoroutine());}
     }
 
   IEnumerator FindTaget()
@@ -90,4 +91,12 @@ public class EnemyFightingScript : MonoBehaviour
      Instantiate(punchMakingObject, gameObject.transform.position, Quaternion.identity);
  }
 
+  IEnumerator DeathCoroutine()
+ {
+     yield return new WaitForSeconds(1.0f);
+     Instantiate(trophy, new Vector2(-735, 323), Quaternion.identity);
+ }
+
 }
+
+
