@@ -4,15 +4,19 @@ using UnityEngine;
 
 public class DealDamageToPlayer : MonoBehaviour
 {
-    // Start is called before the first frame update
+   
     void Start()
     {
-        
+        Debug.Log("Uderzam");
+        StartCoroutine (punchingTimer()); 
     }
 
-    // Update is called once per frame
-    void Update()
+  IEnumerator punchingTimer()
     {
+       
+       yield return new WaitForSeconds(0.2f);
+       
+       Destroy(gameObject);
         
     }
 }

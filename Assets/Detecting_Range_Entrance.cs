@@ -5,6 +5,7 @@ using UnityEngine;
 public class Detecting_Range_Entrance : MonoBehaviour
 {
 public bool inRange = false;
+GameObject enemy;
 public Animator detective_animator;
 
 
@@ -16,8 +17,11 @@ public Animator detective_animator;
     {   
     if(other.gameObject.CompareTag("Player")){  
     detective_animator.SetBool("Punching", true);
+    Debug.Log("Widzę cię");
     StartCoroutine (punchingAnimation()); 
-    if(gameObject.GetComponent<EnemyFightingScript>()) {gameObject.GetComponent<EnemyFightingScript>().Punch();}
+    // if(gameObject.GetComponent<EnemyFightingScript>()) {gameObject.GetComponent<EnemyFightingScript>().Punch();}
+    enemy = GameObject.FindGameObjectWithTag("Enemy");
+    enemy.GetComponent<EnemyFightingScript>().Punch();
 
     }
 
