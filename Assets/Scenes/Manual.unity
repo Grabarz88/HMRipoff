@@ -414,16 +414,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Objective:
-
-    - Find and kill Detective, by punching him once
-
-    -
-    Don''t let him punch You
-
-    - Don''t expect to spend more than 2 minutes playing
-
-'
+  m_Text: "Objective:\n- Find and kill Detective, by punching him once\n- Don't let
+    him punch You\n- Pick up a golden trophy, to finish level \n- Don't expect to
+    spend more than 2 minutes playing\n"
 --- !u!222 &308086831
 CanvasRenderer:
   m_ObjectHideFlags: 0
