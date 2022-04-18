@@ -17,7 +17,6 @@ public Animator detective_animator;
     {   
     if(other.gameObject.CompareTag("Player")){  
     detective_animator.SetBool("Punching", true);
-    Debug.Log("Widzę cię");
     StartCoroutine (punchingAnimation()); 
     // if(gameObject.GetComponent<EnemyFightingScript>()) {gameObject.GetComponent<EnemyFightingScript>().Punch();}
     enemy = GameObject.FindGameObjectWithTag("Enemy");

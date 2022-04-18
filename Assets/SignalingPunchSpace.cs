@@ -14,7 +14,6 @@ public class SignalingPunchSpace : MonoBehaviour
   void OnTriggerEnter2D(Collider2D other) {
       if(other.gameObject.CompareTag("Enemy"))
       {
-          Debug.Log("Punched");
           other.gameObject.GetComponent<EnemyFightingScript>().GetPunched();
           
       }   

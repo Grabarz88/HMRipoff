@@ -17,10 +17,13 @@ public class CameraMovement : MonoBehaviour
 
     void Update() {
     {
+        if(Time.timeScale == 1f)
+        {
         mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector3 tilt = new Vector3(mousePosition.x - transform.position.x, mousePosition.y - transform.position.y, 0f);
         tilt = tilt/3;
         transform.position = target.position + offset + tilt;
+        }
     }
     }
 

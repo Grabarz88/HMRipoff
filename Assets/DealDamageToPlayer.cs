@@ -7,7 +7,6 @@ public class DealDamageToPlayer : MonoBehaviour
    
     void Start()
     {
-        Debug.Log("Uderzam");
         StartCoroutine (punchingTimer()); 
     }
 
