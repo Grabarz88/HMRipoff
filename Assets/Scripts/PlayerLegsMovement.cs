@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class PlayerLegsMovement : MonoBehaviour
 {
- 
+ // This script is added to Legs object which is child to Player's object. 
+ // Methodology is preety similar to EnemyLegsMovement. Check there for more info.
  public Animator legs_animator;
  GameObject playerTorso;
  Rigidbody2D rb;    

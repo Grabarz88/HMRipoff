@@ -6,14 +6,16 @@ using UnityEngine.SceneManagement;
 
 public class RestartingScript : MonoBehaviour
 {
+    // This script is added to player's object. It get's information if Player is alive from PlayerMovement.
+    // If Player is dead, this will show small caption "R to Restart"
     public bool isAlive;
-    public GameObject restartText;
+    public GameObject restartText; //"R to Restart" object.
     
     
     public void Update() {
         if(Input.GetButtonDown("R"))
                 {
-                    SceneManager.LoadScene("FightScene");
+                    SceneManager.LoadScene("FightScene"); //Player can restart the level even if he isn't dead.
                 }
         if(isAlive == true)
                 {
@@ -27,7 +29,7 @@ public class RestartingScript : MonoBehaviour
     }
     
     
-    public void setReadyToRestart(bool alive){
+    public void setReadyToRestart(bool alive){ //When Player dies, PlayerMovement signals it via this method.
         isAlive = alive;
 
     }

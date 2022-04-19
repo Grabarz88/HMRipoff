@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DealDamageToPlayer : MonoBehaviour
 {
-   //This script is added to the invisible game object, that is spawn when Enemy is punching. 
+   //This script is added to the invisible game object "Enemy_Punch_Object", that is spawned when Enemy is punching. 
    //This object exist for very short time and if Player will detect collision with an object containing DealDamageToPlayer scritp, he will start getting punched methods.
     void Start()
     {
